@@ -228,6 +228,25 @@ void writeFiles(const std::vector <std::string> & seqA, const std::vector <std::
 		}
 		fastaFile << std::endl;
 	}
+	
+	// spinput.txt
+	std::ofstream spinput( "spinput.txt", std::ios::out );
+	spinput << std::endl << 1 << std::endl << nA << std::endl << nB << std::endl << nCleanedSites << std::endl << 1 << std::endl << msFile_name << std::endl;
+	spinput.close();
+
+	std::stringstream stream1;
+	stream1 << "mscalc_monoLocus.py " << geneName << std::endl;
+	int test_stream1 = system(stream1.str().c_str());
+	if( test_stream1 != 0 ){
+		exit(EXIT_FAILURE);
+	}
+
+	std::stringstream stream2;
+	stream2 << "mscalc_monoLocus.py " << geneName << std::endl;
+	int test_stream2 = system(stream2.str().c_str());
+	if( test_stream2 != 0 ){
+		exit(EXIT_FAILURE);
+	}
 }
 
 
